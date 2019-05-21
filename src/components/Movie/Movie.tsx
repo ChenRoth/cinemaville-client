@@ -5,6 +5,7 @@ export interface IMovieProps {
     id: number;
     title: string;
     description: string;
+    onDelete(id: number): void;
 }
 
 export class Movie extends React.Component<IMovieProps> {
@@ -22,12 +23,12 @@ export class Movie extends React.Component<IMovieProps> {
     };
 
     delete = async () => {
-        const { id } = this.props;
+        const { id, onDelete } = this.props;
         const response = await fetch(`http://localhost:4000/movies/${id}`, {
             method: 'DELETE'
         });
         if (response.status === 200) {
-            console.log('deleted!')
+            onDelete(id);
         } else {
             console.error('not deleted!');
         }
