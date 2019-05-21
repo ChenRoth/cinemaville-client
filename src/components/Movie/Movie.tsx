@@ -1,4 +1,5 @@
 import * as React from 'react';
+import './Movie.css';
 
 export interface IMovieProps {
     id: number;
@@ -10,9 +11,9 @@ export class Movie extends React.Component<IMovieProps> {
     public render() {
         const { id, title, description } = this.props;
         return (
-            <div>
-                <h4>{title}</h4>
-                <p>
+            <div className="movie">
+                <h4 className="title">{title}</h4>
+                <p className="description">
                     {description}
                 </p>
             </div>
