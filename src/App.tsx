@@ -4,6 +4,7 @@ import { Movie, IMovieProps } from './components/Movie/Movie';
 
 interface IAppState {
     movies: IMovieProps[];
+    isLoading: boolean;
 }
 
 class App extends React.Component<any, IAppState> {
@@ -11,25 +12,31 @@ class App extends React.Component<any, IAppState> {
         super(props);
 
         this.state = {
-            movies: []
+            movies: [],
+            isLoading: true,
         }
-        console.log('constructor');
     }
 
     // this method will be called after the first render, only ONCE!
     public async componentDidMount() {
-        console.log('component did mount');
         // get list of all movies
-        const response = await fetch('http://localhost:4000/movies');
-        const movies = await response.json();
-        this.setState({
-            movies,
-        });
+        let movies = this.state.movies;
+        try {
+            const response = await fetch('http://localhost:4000/movies');
+            movies = await response.json();
+        } finally {
+            this.setState({
+                movies,
+                isLoading: false,
+            });
+        }
     }
 
     public render() {
-        const { movies } = this.state;
-        console.log('render');
+        const { movies, isLoading } = this.state;
+        if (isLoading) {
+            return <div>LOADING MOVIES</div>
+        }
         return (
             <div className="App">
                 {movies.map(movie =>
