@@ -1,12 +1,26 @@
 import React from 'react';
 import './App.css';
+import { Movie } from './components/Movie/Movie';
 
-const App: React.FC = () => {
-    return (
-        <div className="App">
+interface IMovie {
+    id: number;
+    title: string;
+    description: string;
+}
 
-        </div>
-    );
+interface IAppState {
+    movies: IMovie[];
+}
+
+class App extends React.Component {
+
+    public render() {
+        return (
+            <div className="App">
+                <Movie />
+            </div>
+        );
+    }
 }
 
 export default App;
