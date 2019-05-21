@@ -13,11 +13,15 @@ export class Movie extends React.Component<IMovieProps> {
         const { id, title, description } = this.props;
         return (
             <div className="movie">
-                <h4 className="title">{title}</h4>
-                <p className="description">
-                    {description}
-                </p>
-                <button onClick={this.delete}>פח</button>
+                <div className="header">
+                    <h4 className="title">{title}</h4>
+                    <button className="deleteButton" onClick={this.delete}>🗑️</button>
+                </div>
+                <div className="content">
+                    <p className="description">
+                        {description}
+                    </p>
+                </div>
             </div>
         )
     };

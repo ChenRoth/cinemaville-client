@@ -6,10 +6,32 @@
     min-width: 400px;
 }
 
+
+.movie .header {
+    background: lightskyblue;    
+    display: flex;
+}
+
 .movie .title {
-    background: lightskyblue;
     margin: 0;
     padding: 8px;
+    flex: 1;
+}
+
+.movie .deleteButton {
+    background: 0;
+    border-radius: 50%;
+    border: 0;
+    cursor: pointer;
+    transition: background 0.8s;
+}
+
+.movie .deleteButton:hover {
+    background: rgba(200, 200, 200, 0.7);
+}
+
+.movie .content {
+    display: flex;
 }
 
 .movie .description {
@@ -17,3 +39,4 @@
     padding: 16px;
     margin: 0;
 }
+
