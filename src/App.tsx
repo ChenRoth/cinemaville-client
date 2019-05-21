@@ -11,16 +11,23 @@ class App extends React.Component<any, IAppState> {
         super(props);
 
         this.state = {
-            movies: [{
-                id: 1,
-                title: 'Shrek 3',
-                description: 'Giant green guy gets the princess',
-            }]
+            movies: []
         }
+        console.log('constructor');
+    }
+
+    // this method will be called after the first render, only ONCE!
+    public async componentDidMount() {
+        console.log('component did mount');
+        // get list of all movies
+        const response = await fetch('http://localhost:4000/movies');
+        const movies = await response.json();
+        console.log(movies);
     }
 
     public render() {
         const { movies } = this.state;
+        console.log('render');
         return (
             <div className="App">
                 {movies.map(movie =>
