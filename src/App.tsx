@@ -22,7 +22,9 @@ class App extends React.Component<any, IAppState> {
         // get list of all movies
         const response = await fetch('http://localhost:4000/movies');
         const movies = await response.json();
-        console.log(movies);
+        this.setState({
+            movies,
+        });
     }
 
     public render() {
