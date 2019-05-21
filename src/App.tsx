@@ -40,10 +40,20 @@ class App extends React.Component<any, IAppState> {
         return (
             <div className="App">
                 {movies.map(movie =>
-                    <Movie key={movie.id} {...movie} />
+                    <Movie key={movie.id} {...movie}
+                        onDelete={this.onDelete}
+                    />
                 )}
             </div>
         );
+    }
+
+    onDelete = (id: number) => {
+        const { movies } = this.state;
+        const moviesAfterDelete = movies.filter(movie => movie.id !== id)
+        this.setState({
+            movies: moviesAfterDelete
+        });
     }
 }
 
